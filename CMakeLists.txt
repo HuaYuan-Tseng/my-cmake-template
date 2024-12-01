@@ -169,13 +169,6 @@ if (NOT spdlog_FOUND)
     FetchContent_MakeAvailable(spdlog)
 endif ()
 
-# BUG: Will get the C4996 and C4819 warning when build with MSVC without these definition.
-#      Can referenced: https://github.com/gabime/spdlog/issues/2987.
-if (MSVC)
-    target_compile_options(spdlog PRIVATE "/utf-8")
-    target_compile_definitions(spdlog PRIVATE _SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING)
-endif ()
-
 # ---------------------------------------------------------------------------------------
 # Headers and sources.
 # ---------------------------------------------------------------------------------------
