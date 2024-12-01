@@ -1,0 +1,47 @@
+---
+
+# Referenced: https://github.com/GoogleCloudPlatform/cpp-samples/blob/main/speech/api/.clang-tidy
+# If you want to set the checklist more carefully,
+# refer to The list of clang-tidy checks (https://clang.llvm.org/extra/clang-tidy/checks/list.html).
+
+Checks: >
+    -*,
+    bugprone-*,
+    clang-analyzer-*,
+    concurrency-*,
+    cppcoreguidelines-*,
+    google-*,
+    misc-*,
+    modernize-*,
+    performance-*,
+    portability-*,
+    -cppcoreguidelines-avoid-non-const-global-variables,
+    -cppcoreguidelines-avoid-magic-numbers,
+    -cppcoreguidelines-rvalue-reference-param-not-moved,
+    -cppcoreguidelines-non-private-member-variables-in-classes,
+    -cppcoreguidelines-special-member-functions,
+    -modernize-use-trailing-return-type,
+    -modernize-use-equals-default,
+    -misc-use-internal-linkage,
+    -misc-non-private-member-variables-in-classes,
+    -misc-no-recursion,
+    -readability-convert-member-functions-to-static
+
+# Turn all the warnings from the checks above into errors.
+WarningsAsErrors: "*"
+
+HeaderFileExtensions: ['h']
+
+HeaderFilterRegex: 'src/(app)/.*'
+
+CheckOptions:
+    - { key: readability-identifier-naming.ClassCase,                 value: CamelCase  }
+    - { key: readability-identifier-naming.StructCase,                value: CamelCase  }
+    - { key: readability-identifier-naming.TemplateParameterCase,     value: CamelCase  }
+    - { key: readability-identifier-naming.FunctionCase,              value: camelBack  }
+    - { key: readability-identifier-naming.VariableCase,              value: lower_case }
+    - { key: readability-identifier-naming.PrivateMemberSuffix,       value: _          }
+    - { key: readability-identifier-naming.ProtectedMemberSuffix,     value: _          }
+    - { key: performance-move-const-arg.CheckTriviallyCopyableMove,   value: 'false'    }
+    - { key: implementation-file-regex,                               value: '.*(?:src/app/|src/streaming-module/).*\\.cpp$' }
+    - { key: header-file-regex,                                       value: '.*(?:src/app/|src/streaming-module/).*\\.h$' }
